@@ -6,7 +6,7 @@
   "author": "devfabiorm <fabio.evangelion.guitar@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "ts-node-dev src/server.ts"
+    "start": "ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts"
   },
   "dependencies": {
     "express": "^4.17.1"
