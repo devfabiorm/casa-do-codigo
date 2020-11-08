@@ -18,9 +18,7 @@ routes.get('/', function(request, response) {
 });
   
 routes.get('/livros', function(request, response) {
-  response.send(
-    ``
-  );
+  response.marko(Template);
 });
 
 export default routes;

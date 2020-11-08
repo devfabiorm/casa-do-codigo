@@ -1,4 +1,4 @@
-import 'marko/node-require'
+import 'marko/node-require';
 import express from 'express';
 import markoExpress from '@marko/express';
 import routes from '../app/routes/routes';
