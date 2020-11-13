@@ -70,7 +70,7 @@ export default class BookDao {
   update({id, titulo, preco, descricao}: Product) {
     return new Promise<void>((resolve, reject) => {
       this.db.run(
-        'UPDATE livro SET titulo = ?, preco = ?, descricao = ? WHERE id = ?',
+        'UPDATE livros SET titulo = ?, preco = ?, descricao = ? WHERE id = ?',
         [titulo, preco, descricao, id],
         (err: Error) => {
           if(err) {

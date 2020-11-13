@@ -35,7 +35,7 @@ routes.get('/livros', async function(request, response) {
 });
 
 routes.get('/livros/form', function(request, response) {
-  response.marko(FormBook);
+  response.marko(FormBook, { book: {} });
 });
 
 routes.post('/livros', async function(request, response) {
@@ -49,6 +49,44 @@ routes.post('/livros', async function(request, response) {
     console.log(error)
   }
   
+});
+
+routes.put('/livros', async function(request, response) {
+  try {
+    const { id, titulo, preco, descricao } = request.body;
+
+    console.log(descricao)
+
+    await bookDao.update({ id, titulo, preco, descricao });
+
+    response.redirect('/livros');
+  } catch (error) {
+    console.log(error)
+  }
+  
+});
+
+routes.delete('/livros/:id', async function(request, response) {
+  try {
+    const { id } = request.params;
+
+    await bookDao.remove(Number(id));
+    response.status(200).end();
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+routes.get('/livros/form/:id', async function(request, response) {
+  try {
+    const { id } = request.params;
+
+    const book = await bookDao.findById(Number(id));
+
+    response.marko(FormBook, { book });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 export default routes;
