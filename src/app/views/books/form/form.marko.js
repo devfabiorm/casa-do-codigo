@@ -17,25 +17,25 @@ function render(input, out, __component, component, state) {
 
   var { book } = data;
 
-  out.w("<html><body><h1>Cadastro de livros</h1><form action=/livros method=post>");
+  out.w("<html><head><meta charset=utf-8><link rel=stylesheet href=/estatico/css/bootstrap.min.css><link rel=stylesheet href=/estatico/css/fontawesome.min.css><link rel=stylesheet href=/estatico/css/casadocodigo.css></head><body><header class=cabecalhoPrincipal><div class=container><div class=\"row align-items-center\"><div class=col-4><h1 class=logo><img src=/estatico/images/logo-casadocodigo.svg alt=\"Casa do Código\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=# class=login><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=conteudoPrincipal><div class=container><h1>Cadastro de livros</h1><form action=/livros method=post>");
 
   if (book.id) {
-    out.w("<input type=hidden name=_method value=PUT><input type=hidden id=id name=id" +
+    out.w("<input type=hidden name=_method value=PUT><input type=hidden name=id" +
       marko_attr("value", "" + book.id) +
       ">");
   }
 
-  out.w("<div><label for=titulo>Titulo:</label><input type=text id=titulo name=titulo" +
-    marko_attr("value", "" + (book.id ? book.titulo : "")) +
-    " placeholder=\"coloque o titulo\"></div><div><label for=preco>Preço:</label><input type=text id=preco name=preco" +
+  out.w("<div class=form-group><label for=titulo>Titulo:</label><input type=text id=titulo name=titulo" +
+    marko_attr("value", "" + (book.id ? book.Titulo : "")) +
+    " placeholder=\"coloque o titulo\" class=form-control></div><div class=form-group><label for=preco>Preço:</label><input type=text id=preco name=preco placeholder=150.25" +
     marko_attr("value", "" + (book.id ? book.preco : "")) +
-    " placeholder=150.25></div><div><label for=descricao>Descrição:</label><textarea cols=20 rows=10 id=descricao name=descricao placeholder=\"fale sobre o livro\">" +
-    marko_escapeXml(book.descricao) +
-    "</textarea></div><input type=submit value=Salvar></form>");
+    " class=form-control></div><div class=form-group><label for=descricao>Descrição:</label><textarea cols=20 rows=10 id=descricao name=descricao placeholder=\"fale sobre o livro\" class=form-control>" +
+    marko_escapeXml(book.id ? book.descricao : "") +
+    "</textarea></div><input type=submit value=Salvar class=\"btn btn-primary\"></form></div></main><footer class=rodape><div class=container><div class=\"row align-items-center\"><div class=col-4><img src=/estatico/images/logo-rodape.svg class=logo-rodape></div><div class=col-8><ul class=redesSociais><li><a href=http://www.facebook.com/casadocodigo class=compartilhar-facebook target=_blank>/CasaDoCodigo</a></li><li><a href=http://www.twitter.com/casadocodigo class=compartilhar-twitter target=_blank>@casadocodigo</a></li></ul></div></div></div></footer>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "16");
+  await_reorderer_tag({}, out, __component, "43");
 
   _preferred_script_location_tag({}, out);
 

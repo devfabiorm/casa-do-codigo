@@ -18,16 +18,14 @@ function render(input, out, __component, component, state) {
 
   var { books } = data;
 
-  out.w("<html><head><meta charset=utf-8></head><body><h1> Listagem de Livros </h1><table id=livros><thead><tr><th>ID</th><th>Título</th><th>Preço</th><th>Editar</th><th>Remover</th></tr></thead><tbody>");
+  out.w("<html><head><meta charset=utf-8><link rel=stylesheet href=/estatico/css/bootstrap.min.css><link rel=stylesheet href=/estatico/css/fontawesome.min.css><link rel=stylesheet href=/estatico/css/casadocodigo.css></head><body><header class=cabecalhoPrincipal><div class=container><div class=\"row align-items-center\"><div class=col-4><h1 class=logo><img src=/estatico/images/logo-casadocodigo.svg alt=\"Casa do Código\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=# class=login><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=conteudoPrincipal><div class=container><h1> Listagem de livros </h1><table id=livros class=\"table table-striped table-hover\"><thead class=thead-dark><tr><th>ID</th><th>Título</th><th>Preço</th><th>Editar</th><th>Remover</th></tr></thead><tbody>");
 
   var $for$0 = 0;
 
   marko_forOf(books, function(book) {
     var $keyScope$0 = "[" + (($for$0++) + "]");
 
-    out.w("<tr" +
-      marko_attr("id", "livro_" + book.id) +
-      "><td>" +
+    out.w("<tr><td>" +
       marko_escapeXml(book.id) +
       "</td><td>" +
       marko_escapeXml(book.titulo) +
@@ -40,15 +38,15 @@ function render(input, out, __component, component, state) {
       " data-type=remocao>Remover</a></td></tr>");
   });
 
-  out.w("</tbody></table><script src=/estatico/js/remove-livro.js></script>");
+  out.w("</tbody></table></div></main><footer class=rodape><div class=container><div class=\"row align-items-center\"><div class=col-4><img src=/estatico/images/logo-rodape.svg class=logo-rodape></div><div class=col-8><ul class=redesSociais><li><a href=http://www.facebook.com/casadocodigo class=compartilhar-facebook target=_blank>/CasaDoCodigo</a></li><li><a href=http://www.twitter.com/casadocodigo class=compartilhar-twitter target=_blank>@casadocodigo</a></li></ul></div></div></div></footer><script src=/estatico/js/remove-livro.js>\r\n        </script>");
 
   init_components_tag({}, out);
 
-  await_reorderer_tag({}, out, __component, "22");
+  await_reorderer_tag({}, out, __component, "47");
 
   _preferred_script_location_tag({}, out);
 
-  out.w("</body> </html>");
+  out.w("</body></html>");
 }
 
 marko_template._ = marko_renderer(render, {

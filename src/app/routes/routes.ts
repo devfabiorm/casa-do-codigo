@@ -3,6 +3,7 @@ import { Router } from 'express';
 import db from '../../config/database';
 import BookDao from '../infra/book-dao';
 
+import Home from '../views/base/home/home.marko';
 import ListBooks from '../views/books/list/list.marko';
 import FormBook from '../views/books/form/form.marko';
 
@@ -11,16 +12,7 @@ const bookDao = new BookDao(db);
 
 
 routes.get('/', function(request, response) {
-  response.send(
-    `<html>
-        <head>
-            <meta charset="utf-8">
-        </head>
-        <body>
-            <h1> Casa do Código </h1>
-        </body> 
-    </html>`
-  );
+  response.marko(Home);
 });
   
 routes.get('/livros', async function(request, response) {
