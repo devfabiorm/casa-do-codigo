@@ -1,4 +1,5 @@
-import { Router } from 'express';
+import { Router, Response, Request } from 'express';
+import { body, validationResult } from 'express-validator';
 
 import db from '../../config/database';
 import BookDao from '../infra/book-dao';
@@ -30,15 +31,24 @@ routes.get('/livros/form', function(request, response) {
   response.marko(FormBook, { book: {} });
 });
 
-routes.post('/livros', async function(request, response) {
+routes.post('/livros', [
+  body('titulo').isLength({ min: 5 }).withMessage('O título precisar ter no mínimo 5 caracteres'),
+  body('preco').isCurrency().withMessage('O preço precisa ter um valor monetário válido')
+], async function(request: Request, response: Response) {
   try {
+    const errors = validationResult(request);
+
+    if(!errors.isEmpty()) {
+      return response.marko(FormBook, { book: request.body, validationErrors: errors.array() });
+    }
+
     const { id, titulo, preco, descricao } = request.body;
 
     await bookDao.create({ id, titulo, preco, descricao });
 
     response.redirect('/livros');
   } catch (error) {
-    console.log(error)
+    console.log(error);
   }
   
 });
