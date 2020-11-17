@@ -43,11 +43,32 @@ routes.post('/livros', async function(request, response) {
   
 });
 
+routes.get('/livros/form/:id', function(request, response, next) {
+  const { id } = request.params;
+
+  bookDao.findById(Number(id)).then(res => {
+    if(res) {
+      response.marko(FormBook, { book: res });
+    }else {
+      next('Book not found')
+    }
+  })
+  // .catch(err => console.log(err));
+  // try {
+  //   const { id } = request.params;
+
+  //   const book = await bookDao.findById(Number(id));
+
+  //   response.marko(FormBook, { book });
+  // } catch (error) {
+  //   console.log('cai aqui')
+  //   console.log(error);
+  // }
+});
+
 routes.put('/livros', async function(request, response) {
   try {
     const { id, titulo, preco, descricao } = request.body;
-
-    console.log(descricao)
 
     await bookDao.update({ id, titulo, preco, descricao });
 
@@ -69,16 +90,5 @@ routes.delete('/livros/:id', async function(request, response) {
   }
 });
 
-routes.get('/livros/form/:id', async function(request, response) {
-  try {
-    const { id } = request.params;
-
-    const book = await bookDao.findById(Number(id));
-
-    response.marko(FormBook, { book });
-  } catch (error) {
-    console.log(error);
-  }
-});
 
 export default routes;

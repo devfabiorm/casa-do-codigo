@@ -26,7 +26,7 @@ function render(input, out, __component, component, state) {
   }
 
   out.w("<div class=form-group><label for=titulo>Titulo:</label><input type=text id=titulo name=titulo" +
-    marko_attr("value", "" + (book.id ? book.Titulo : "")) +
+    marko_attr("value", "" + (book.id ? book.titulo : "")) +
     " placeholder=\"coloque o titulo\" class=form-control></div><div class=form-group><label for=preco>Preço:</label><input type=text id=preco name=preco placeholder=150.25" +
     marko_attr("value", "" + (book.id ? book.preco : "")) +
     " class=form-control></div><div class=form-group><label for=descricao>Descrição:</label><textarea cols=20 rows=10 id=descricao name=descricao placeholder=\"fale sobre o livro\" class=form-control>" +
