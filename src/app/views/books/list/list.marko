@@ -37,15 +37,14 @@ $ var { books } = data;
                     </thead>
                     <tbody>
                         <for|book| of=books>
-                          <tr>
+                          <tr id=`livro_${book.id}`>
                             <td>${book.id}</td>
-                            <td>${book.titulo}</td>
-                            <td>${book.preco}</td>
+                            <td>${book.title}</td>
+                            <td>${book.price}</td>
                             <td><a href=`/livros/form/${book.id}`>Editar</a></td>
                             <td><a href="#" data-ref=`${book.id}` data-type="remocao">Remover</a></td>
                           </tr>
-                        </for>
-                        
+                        </for>   
                     </tbody>
                 </table>
             </div>

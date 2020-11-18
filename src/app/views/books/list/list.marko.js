@@ -25,12 +25,14 @@ function render(input, out, __component, component, state) {
   marko_forOf(books, function(book) {
     var $keyScope$0 = "[" + (($for$0++) + "]");
 
-    out.w("<tr><td>" +
+    out.w("<tr" +
+      marko_attr("id", "livro_" + book.id) +
+      "><td>" +
       marko_escapeXml(book.id) +
       "</td><td>" +
-      marko_escapeXml(book.titulo) +
+      marko_escapeXml(book.title) +
       "</td><td>" +
-      marko_escapeXml(book.preco) +
+      marko_escapeXml(book.price) +
       "</td><td><a" +
       marko_attr("href", "/livros/form/" + book.id) +
       ">Editar</a></td><td><a href=#" +
@@ -38,7 +40,7 @@ function render(input, out, __component, component, state) {
       " data-type=remocao>Remover</a></td></tr>");
   });
 
-  out.w("</tbody></table></div></main><footer class=rodape><div class=container><div class=\"row align-items-center\"><div class=col-4><img src=/estatico/images/logo-rodape.svg class=logo-rodape></div><div class=col-8><ul class=redesSociais><li><a href=http://www.facebook.com/casadocodigo class=compartilhar-facebook target=_blank>/CasaDoCodigo</a></li><li><a href=http://www.twitter.com/casadocodigo class=compartilhar-twitter target=_blank>@casadocodigo</a></li></ul></div></div></div></footer><script src=/estatico/js/remove-livro.js>\r\n        </script>");
+  out.w(" </tbody></table></div></main><footer class=rodape><div class=container><div class=\"row align-items-center\"><div class=col-4><img src=/estatico/images/logo-rodape.svg class=logo-rodape></div><div class=col-8><ul class=redesSociais><li><a href=http://www.facebook.com/casadocodigo class=compartilhar-facebook target=_blank>/CasaDoCodigo</a></li><li><a href=http://www.twitter.com/casadocodigo class=compartilhar-twitter target=_blank>@casadocodigo</a></li></ul></div></div></div></footer><script src=/estatico/js/remove-livro.js>\r\n        </script>");
 
   init_components_tag({}, out);
 

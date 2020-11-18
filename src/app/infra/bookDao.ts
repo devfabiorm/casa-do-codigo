@@ -2,9 +2,9 @@ import { Database } from "sqlite3";
 
 interface Product {
   id?: number;
-  titulo: string;
-  preco: number;
-  descricao: string;
+  title: string;
+  price: number;
+  description: string;
 }
 
 export default class BookDao {
@@ -16,7 +16,7 @@ export default class BookDao {
 
   list() {
     return new Promise<Product[]>((resolve, reject) => {
-      this.db.all('SELECT * FROM livros',
+      this.db.all('SELECT * FROM books',
       (err, rows) => {
         if(err) return reject('Não foi possível listar os livros!');
 
@@ -26,25 +26,24 @@ export default class BookDao {
     });
   }
 
-  create({titulo, preco, descricao}: Product) {
+  create({title, price, description}: Product) {
     return new Promise<void>((resolve, reject) => {
       this.db.run(`
-      INSERT INTO livros (
-        titulo,
-        preco,
-        descricao
+      INSERT INTO books (
+        title,
+        price,
+        description
       ) values (?,?,?)`,
       [
-        titulo,
-        preco,
-        descricao
+        title,
+        price,
+        description
       ],
       function(err: Error) {
         if(err) {
           console.log(err);
           return reject('Não foi possível adicionar o livro!');
         }
-
         resolve();
       })
     });
@@ -53,7 +52,7 @@ export default class BookDao {
   findById(id: number) {
     return new Promise<Product>((resolve, reject) => {
       this.db.get(
-        `SELECT * FROM livros WHERE id = ?`,
+        `SELECT * FROM books WHERE id = ?`,
         [id], 
         (err: Error, row: any) => {
           if(err) {
@@ -67,11 +66,11 @@ export default class BookDao {
     });
   }
 
-  update({id, titulo, preco, descricao}: Product) {
+  update({id, title, price, description}: Product) {
     return new Promise<void>((resolve, reject) => {
       this.db.run(
-        'UPDATE livros SET titulo = ?, preco = ?, descricao = ? WHERE id = ?',
-        [titulo, preco, descricao, id],
+        'UPDATE books SET title = ?, price = ?, description = ? WHERE id = ?',
+        [title, price, description, id],
         (err: Error) => {
           if(err) {
             console.log(err);
@@ -87,7 +86,7 @@ export default class BookDao {
   remove(id: number) {
     return new Promise<void>((resolve, reject) => {
       this.db.run(
-        'DELETE FROM LIVROS WHERE id = ?',
+        'DELETE FROM books WHERE id = ?',
         [id],
         (err: Error) => {
           if(err) {

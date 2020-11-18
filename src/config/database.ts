@@ -1,73 +1,73 @@
 import sqlite3 from 'sqlite3';
 // import { open, ISqlite, IMigrate } from 'sqlite';
 
-const bd = new sqlite3.Database('data.db')
+const db = new sqlite3.Database('data.db')
 
-const USUARIOS_SCHEMA = `
-CREATE TABLE IF NOT EXISTS usuarios (
+const USERS_SCHEMA = `
+CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT, 
-    nome_completo VARCHAR(40) NOT NULL UNIQUE, 
+    full_name VARCHAR(40) NOT NULL UNIQUE, 
     email VARCHAR(255) NOT NULL, 
-    senha VARCHAR(255) NOT NULL
+    password VARCHAR(255) NOT NULL
 )
 `;
 
-const INSERIR_USUARIO_1 = 
+const INSERT_1ST_USER = 
 `
-INSERT INTO usuarios (
-    nome_completo, 
+INSERT INTO users (
+    full_name, 
     email,
-    senha
-) SELECT 'Gabriel Leite', 'gabriel@alura.com.br', '123' WHERE NOT EXISTS (SELECT * FROM usuarios WHERE email = 'gabriel@alura.com.br')
+    password
+) SELECT 'Gabriel Leite', 'gabriel@alura.com.br', '123' WHERE NOT EXISTS (SELECT * FROM users WHERE email = 'gabriel@alura.com.br')
 `;
 
-const LIVROS_SCHEMA = 
+const BOOKS_SCHEMA = 
 `
-CREATE TABLE IF NOT EXISTS livros (
+CREATE TABLE IF NOT EXISTS books (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    titulo TEXT NOT NULL, 
-    preco REAL NOT NULL,
-    descricao TEXT DEFAULT ('') NOT NULL
+    title TEXT NOT NULL, 
+    price REAL NOT NULL,
+    description TEXT DEFAULT ('') NOT NULL
 )
 `;
 
-const INSERIR_LIVRO_1 = 
+const INSERT_1ST_BOOK = 
 `
-INSERT INTO livros (
-    titulo,
-    preco,
-    descricao
-) SELECT 'Node na prática', 30.0, 'Como desenvolver com Node.' WHERE NOT EXISTS (SELECT * FROM livros WHERE titulo = 'Node na prática')
+INSERT INTO books (
+    title,
+    price,
+    description
+) SELECT 'Node na prática', 30.0, 'Como desenvolver com Node.' WHERE NOT EXISTS (SELECT * FROM books WHERE title = 'Node na prática')
 `;
 
-const INSERIR_LIVRO_2 = 
+const INSERT_2ND_BOOK = 
 `
-INSERT INTO livros (
-    titulo, 
-    preco,
-    descricao
-) SELECT 'JavaScript na prática', 40.0, 'Como desenvolver com JavaScript.' WHERE NOT EXISTS (SELECT * FROM livros WHERE titulo = 'JavaScript na prática')
+INSERT INTO books (
+    title, 
+    price,
+    description
+) SELECT 'JavaScript na prática', 40.0, 'Como desenvolver com JavaScript.' WHERE NOT EXISTS (SELECT * FROM books WHERE title = 'JavaScript na prática')
 `;
 
-bd.serialize(() => {
-    bd.run("PRAGMA foreign_keys=ON");
-    bd.run(USUARIOS_SCHEMA);
-    bd.run(INSERIR_USUARIO_1);
-    bd.run(LIVROS_SCHEMA);
-    bd.run(INSERIR_LIVRO_1);
-    bd.run(INSERIR_LIVRO_2);
+db.serialize(() => {
+    db.run("PRAGMA foreign_keys=ON");
+    db.run(USERS_SCHEMA);
+    db.run(INSERT_1ST_USER);
+    db.run(BOOKS_SCHEMA);
+    db.run(INSERT_1ST_BOOK);
+    db.run(INSERT_2ND_BOOK);
 
-    bd.each("SELECT * FROM usuarios", (err, usuario) => {
+    db.each("SELECT * FROM users", (err, user) => {
         console.log('Usuario: ');
-        console.log(usuario);
+        console.log(user);
     });
 });
 
 process.on('SIGINT', () =>
-    bd.close(() => {
-        console.log('BD encerrado!');
+    db.close(() => {
+        console.log('db encerrado!');
         process.exit(0);
     })
 );
 
-export default bd;
+export default db;

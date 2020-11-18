@@ -43,16 +43,16 @@ $ var { validationErrors } = data;
                     </if>
 
                     <div class="form-group">
-                        <label for="titulo">Titulo:</label>
-                        <input type="text" id="titulo" name="titulo" value=`${book.titulo ? book.titulo : ''}` placeholder="coloque o titulo" class="form-control"/>
+                        <label for="title">Titulo:</label>
+                        <input type="text" id="title" name="title" value=`${book.title ? book.title : ''}` placeholder="coloque o titulo" class="form-control"/>
                     </div>
                     <div class="form-group">
-                        <label for="preco">Preço:</label>
-                        <input type="text" id="preco" name="preco" placeholder="150.25" value=`${book.preco ? book.preco : ''}` class="form-control"/>
+                        <label for="price">Preço:</label>
+                        <input type="text" id="price" name="price" placeholder="150.25" value=`${book.price ? book.price : ''}` class="form-control"/>
                     </div>
                     <div class="form-group">
-                        <label for="descricao">Descrição:</label>
-                        <textarea cols="20" rows="10"  id="descricao" name="descricao" placeholder="fale sobre o livro" class="form-control">${book.id ? book.descricao : ''}</textarea>
+                        <label for="description">Descrição:</label>
+                        <textarea cols="20" rows="10"  id="description" name="description" placeholder="fale sobre o livro" class="form-control">${book.description ? book.description : ''}</textarea>
                     </div>
 
                     <input type="submit" value="Salvar" class="btn btn-primary"/>
