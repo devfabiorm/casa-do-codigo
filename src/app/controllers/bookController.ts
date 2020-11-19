@@ -4,24 +4,32 @@ import { validationResult } from 'express-validator';
 import BookDao from '../infra/bookDao';
 import db from '../../config/database';
 
-import ListBooks from '../views/books/list/list.marko';
-import FormBook from '../views/books/form/form.marko';
+import * as Templates from '../views';
 
 export default class BookController {
+
+  static routes() {
+    return {
+      list: '/livros',
+      create: '/livros/form',
+      edit: '/livros/form/:id',
+      remove: '/livros/:id'
+    }
+  }
 
   async index(request: Request, response: Response) {
     try {
       const bookDao = new BookDao(db);
       const books = await bookDao.list();
 
-      response.marko(ListBooks, { books });
+      response.marko(Templates.books.list, { books });
     } catch (error) {
       console.log(error);
     }
   }
 
   form(request: Request, response: Response) {
-    response.marko(FormBook, { book: {} });
+    response.marko(Templates.books.form, { book: {} });
   }
 
   async create(request: Request, response: Response) {
@@ -30,7 +38,7 @@ export default class BookController {
       const errors = validationResult(request);
 
       if(!errors.isEmpty()) {
-        return response.marko(FormBook, { book: {}, validationErrors: errors.array() });
+        return response.marko(Templates.books.form, { book: {}, validationErrors: errors.array() });
       }
 
       const bookDao = new BookDao(db);
@@ -38,7 +46,7 @@ export default class BookController {
       const { title, price, description } = request.body;
       await bookDao.create({ title, price, description });
 
-      response.redirect('/livros');
+      response.redirect(BookController.routes().list);
     } catch (error) {
       console.log(error);
     }
@@ -51,7 +59,7 @@ export default class BookController {
 
       await bookDao.update({ id, title, price, description });
 
-      response.redirect('/livros');
+      response.redirect(BookController.routes().list);
     } catch (error) {
       console.log(error);
     }
@@ -77,7 +85,7 @@ export default class BookController {
       const book = await bookDao.findById(Number(id));
 
       if(book) {
-        return response.marko(FormBook, { book });
+        return response.marko(Templates.books.form, { book });
       } else {
         next('Book not found');
       }

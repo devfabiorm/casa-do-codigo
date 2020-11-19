@@ -1,11 +1,10 @@
 import 'marko/node-require';
 import express, {Response, Request, NextFunction, ErrorRequestHandler } from 'express';
 import markoExpress from '@marko/express';
-import routes from '../app/routes/routes';
+import routes from '../app/routes';
 import methodOverride from 'method-override';
 import error404 from '../app/views/base/erros/404.marko';
 import error500 from '../app/views/base/erros/500.marko';
-//import {ParamsDictionary, NextFunction, Request, Response, Query } from 'express-serve-static-core'
 
 const app = express();
 

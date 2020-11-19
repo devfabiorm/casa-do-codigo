@@ -26,7 +26,7 @@ $ var { validationErrors } = data;
             <div class="container">
                 <h1>Cadastro de livros</h1>
                 
-                <form action="/livros" method="post">
+                <form action="/livros/form" method="post">
 
                     <if(validationErrors)>
                         <for|error| of=validationErrors>

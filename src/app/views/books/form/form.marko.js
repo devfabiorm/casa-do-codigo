@@ -20,7 +20,7 @@ function render(input, out, __component, component, state) {
 
   var { validationErrors } = data;
 
-  out.w("<html><head><meta charset=utf-8><link rel=stylesheet href=/estatico/css/bootstrap.min.css><link rel=stylesheet href=/estatico/css/fontawesome.min.css><link rel=stylesheet href=/estatico/css/casadocodigo.css></head><body><header class=cabecalhoPrincipal><div class=container><div class=\"row align-items-center\"><div class=col-4><h1 class=logo><img src=/estatico/images/logo-casadocodigo.svg alt=\"Casa do Código\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=# class=login><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=conteudoPrincipal><div class=container><h1>Cadastro de livros</h1><form action=/livros method=post>");
+  out.w("<html><head><meta charset=utf-8><link rel=stylesheet href=/estatico/css/bootstrap.min.css><link rel=stylesheet href=/estatico/css/fontawesome.min.css><link rel=stylesheet href=/estatico/css/casadocodigo.css></head><body><header class=cabecalhoPrincipal><div class=container><div class=\"row align-items-center\"><div class=col-4><h1 class=logo><img src=/estatico/images/logo-casadocodigo.svg alt=\"Casa do Código\"></h1></div><div class=\"cabecalhoPrincipal-navegacao col-8\"><a href=# class=login><i class=\"fas fa-sign-in-alt\"></i>Login</a></div></div></div></header><main class=conteudoPrincipal><div class=container><h1>Cadastro de livros</h1><form action=/livros/form method=post>");
 
   if (validationErrors) {
     var $for$0 = 0;
