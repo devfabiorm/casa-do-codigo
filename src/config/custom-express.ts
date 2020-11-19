@@ -8,7 +8,7 @@ import error500 from '../app/views/base/erros/500.marko';
 
 const app = express();
 
-app.use('/estatico', express.static('src/app/public'));
+app.use('/static', express.static('src/app/public'));
 app.use(express.urlencoded({
   extended: true
 }));
