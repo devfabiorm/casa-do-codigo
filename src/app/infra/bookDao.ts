@@ -8,15 +8,12 @@ interface Product {
 }
 
 export default class BookDao {
-  private db: Database;
 
-  constructor(db: Database) {
-    this.db = db;
-  }
+  constructor(private _db: Database) {}
 
   list() {
     return new Promise<Product[]>((resolve, reject) => {
-      this.db.all('SELECT * FROM books',
+      this._db.all('SELECT * FROM books',
       (err, rows) => {
         if(err) return reject('Não foi possível listar os livros!');
 
@@ -28,7 +25,7 @@ export default class BookDao {
 
   create({title, price, description}: Product) {
     return new Promise<void>((resolve, reject) => {
-      this.db.run(`
+      this._db.run(`
       INSERT INTO books (
         title,
         price,
@@ -51,7 +48,7 @@ export default class BookDao {
 
   findById(id: number) {
     return new Promise<Product>((resolve, reject) => {
-      this.db.get(
+      this._db.get(
         `SELECT * FROM books WHERE id = ?`,
         [id], 
         (err: Error, row: any) => {
@@ -68,7 +65,7 @@ export default class BookDao {
 
   update({id, title, price, description}: Product) {
     return new Promise<void>((resolve, reject) => {
-      this.db.run(
+      this._db.run(
         'UPDATE books SET title = ?, price = ?, description = ? WHERE id = ?',
         [title, price, description, id],
         (err: Error) => {
@@ -85,7 +82,7 @@ export default class BookDao {
 
   remove(id: number) {
     return new Promise<void>((resolve, reject) => {
-      this.db.run(
+      this._db.run(
         'DELETE FROM books WHERE id = ?',
         [id],
         (err: Error) => {
