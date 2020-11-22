@@ -10,6 +10,7 @@ export default class BookController {
 
   static routes() {
     return {
+      authorizeds: '/livros*',
       list: '/livros',
       create: '/livros/form',
       edit: '/livros/form/:id',

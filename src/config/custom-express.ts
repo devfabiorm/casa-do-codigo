@@ -13,6 +13,7 @@ import * as Templates from '../app/views';
 const app = express();
 
 app.use('/static', express.static('src/app/public'));
+
 app.use(session({
   secret: 'node alura',
   genid: function(request) {
@@ -21,6 +22,7 @@ app.use(session({
   resave: false,
   saveUninitialized: false
 }));
+
 app.use(express.urlencoded({
   extended: true
 }));
