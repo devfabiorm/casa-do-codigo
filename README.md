@@ -1,8 +1,3 @@
-
-<p align="center>
-  <img src="https://github.com/devfabiorm/casa-do-codigo/blob/master/screenshots/index_books.png">
-<p>
-<br />
 # Project
 
 A simple representation of a online library implementing CRUD in NodeJS with simple template web view to become easier interaction.
