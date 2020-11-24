@@ -1,6 +1,6 @@
 
 <p align="center>
-  <img src="https://github.com/devfabiorm/casa-do-codigo/blob/master/screenshots/index_books.png" width="100%">
+  <img src="https://github.com/devfabiorm/casa-do-codigo/blob/master/screenshots/index_books.png">
 <p>
 <br />
 # Project
